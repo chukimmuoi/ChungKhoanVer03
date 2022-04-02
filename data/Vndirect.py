@@ -186,6 +186,7 @@ def get_json_from_url(url):
     :return: Dữ liệu dưới dạng json
     """
     request = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    # request = Request(url, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'})
     response = urlopen(request)
     data_json = json.loads(response.read())['data']
     return data_json

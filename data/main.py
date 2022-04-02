@@ -40,13 +40,13 @@ def build(time_units, time_type, is_first_call, is_create_new_file_tssl, is_draw
 
 
 # Step 00
-build(time_units=5, time_type=TimeUnitsType.YEAR, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
+# build(time_units=1, time_type=TimeUnitsType.YEAR, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
 # Step 01
-# build(time_units=1, time_type=TimeUnitsType.MONTH, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
+# build(time_units=5, time_type=TimeUnitsType.YEAR, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
 # Step 02: Vẽ chart theo số năm
-# build(time_units=1, time_type=TimeUnitsType.MONTH, is_first_call=False, is_create_new_file_tssl=True, is_draw_chart=True)
+# build(time_units=5, time_type=TimeUnitsType.YEAR, is_first_call=False, is_create_new_file_tssl=True, is_draw_chart=True)
 
 # Step 03: Vẽ chart 1 năm
 # build(time_units=1, time_type=TimeUnitsType.YEAR, is_first_call=False, is_create_new_file_tssl=False, is_draw_chart=True)

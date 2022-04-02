@@ -80,6 +80,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/securities/Loc_Quy_2_2020.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/securities/NewSymbol.csv">
           <value>
             <Attribute>
@@ -186,20 +193,6 @@
           </value>
         </entry>
         <entry key="/data/symbol/7_Day/DQC.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/symbols_exist.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/data/symbols_not_exist.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
