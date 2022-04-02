@@ -73,7 +73,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/securities/DQC.csv">
+        <entry key="/data/securities/DanhMucDauTu.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -81,6 +81,27 @@
           </value>
         </entry>
         <entry key="/data/securities/NewSymbol.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/PhimHang.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/symbols_exist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/symbols_not_exist.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -171,7 +192,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/symbol/test.csv">
+        <entry key="/data/symbols_exist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbols_not_exist.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

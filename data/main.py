@@ -1,7 +1,9 @@
 import Vndirect
 import time
 
+from caculator.Calculator import SYMBOL_COLUMN
 from chart.Draw import plot_chart
+from data.Compare import compare
 from data.Units import TimeUnitsType, get_time_name_with_type
 from data.Vndirect import get_all_symbol_in_file
 
@@ -25,7 +27,7 @@ def build(time_units, time_type, is_first_call, is_create_new_file_tssl, is_draw
         Vndirect.mining_data_from_vndirect(symbols, time_units, time_type, is_first_call)
 
     symbols_csv = get_all_symbol_in_file(f'../data/TSSL_In_{time_units}_{time_name_type}.csv')
-    symbols = symbols_csv['Symbol']
+    symbols = symbols_csv[SYMBOL_COLUMN]
     # Chạy các mã vừa tìm được trong 1 đơn vị để có cái nhìn gần nhất về cổ phiếu.
     if time_units > 1 and time_type != TimeUnitsType.DAY:
         Vndirect.mining_data_from_vndirect(symbols, 1, time_type, False)
@@ -34,17 +36,20 @@ def build(time_units, time_type, is_first_call, is_create_new_file_tssl, is_draw
     print(f"Total run time: {round(end - start)}s")
 
     if is_draw_chart:
-        plot_chart(symbols, time_units)
+        plot_chart(symbols, time_units, time_name_type)
 
 
 # Step 00
-# build(time_units=1, time_type=TimeUnitsType.YEAR, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
+build(time_units=5, time_type=TimeUnitsType.YEAR, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
 # Step 01
-# build(time_units=6, time_type=TimeUnitsType.YEAR, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
+# build(time_units=1, time_type=TimeUnitsType.MONTH, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
 # Step 02: Vẽ chart theo số năm
-# build(time_units=6, time_type=TimeUnitsType.YEAR, is_first_call=False, is_create_new_file_tssl=True, is_draw_chart=True)
+# build(time_units=1, time_type=TimeUnitsType.MONTH, is_first_call=False, is_create_new_file_tssl=True, is_draw_chart=True)
 
 # Step 03: Vẽ chart 1 năm
-build(time_units=1, time_type=TimeUnitsType.YEAR, is_first_call=False, is_create_new_file_tssl=False, is_draw_chart=True)
+# build(time_units=1, time_type=TimeUnitsType.YEAR, is_first_call=False, is_create_new_file_tssl=False, is_draw_chart=True)
+
+# Step 04: So sánh mã tồn tại trong 2 danh sách mining được
+# compare("TSSL_IN_5_Year", "TSSL_IN_1_Year")
