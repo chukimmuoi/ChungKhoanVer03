@@ -32,6 +32,9 @@ def build(count_year, is_first_call, is_create_new_file_tssl, is_draw_chart):
         plot_chart(symbols, count_year)
 
 
+# Step 00
+# build(count_year=1, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
+
 # Step 01
 # build(count_year=6, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
