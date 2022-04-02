@@ -17,7 +17,8 @@ def build(count_year, is_first_call, is_create_new_file_tssl, is_draw_chart):
     """
     start = time.time()
     if is_create_new_file_tssl:
-        symbols_csv = get_all_symbol_in_file('../data/securities/AllSymbol.csv')
+        # symbols_csv = get_all_symbol_in_file('../data/securities/AllSymbol.csv')
+        symbols_csv = get_all_symbol_in_file('../data/securities/CafeF.csv')
         symbols = symbols_csv['stockSymbol']
         Vndirect.mining_data_from_vndirect(symbols, count_year, is_first_call)
 
@@ -39,4 +40,4 @@ def build(count_year, is_first_call, is_create_new_file_tssl, is_draw_chart):
 # build(count_year=6, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
 # Step 02
-build(count_year=6, is_first_call=False, is_create_new_file_tssl=False, is_draw_chart=True)
+build(count_year=6, is_first_call=False, is_create_new_file_tssl=True, is_draw_chart=True)
