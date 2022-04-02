@@ -3,7 +3,28 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/data/TSSL_In_1_Month.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/TSSL_In_1_Week.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/TSSL_In_1_Year.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/TSSL_In_5_Day.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -17,7 +38,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/TSSL_In_6_Month.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/TSSL_In_6_Year.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/TSSL_In_7_Day.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -38,6 +73,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/securities/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/securities/NewSymbol.csv">
           <value>
             <Attribute>
@@ -45,7 +87,63 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/symbol/1_Month/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/1_Week/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/1_Year/AAT.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/1_Year/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/symbol/1_year/A32.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/3_Day/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/5_Day/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/6_Month/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/6_Year/DQC.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -60,6 +158,20 @@
           </value>
         </entry>
         <entry key="/data/symbol/6_year/PVX.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/7_Day/DQC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/test.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

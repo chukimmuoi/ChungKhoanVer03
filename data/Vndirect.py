@@ -4,24 +4,26 @@ import json
 import pandas
 from pathlib import Path
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 import pandas as pd
 from caculator.Calculator import create_percent, SYMBOL_COLUMN, column_format, FULL_COLUMN, MEAN_VOLUME_COLUMN, \
     STD_VOLUME_COLUMN, percent_text_format
 
 # SSL certificate.
+from data.Units import get_from_date_with_type, get_time_name_with_type
+
 ssl._create_default_https_context = ssl._create_unverified_context
 
 VN_DIRECT_COM_VN = "https://finfo-api.vndirect.com.vn/v4/stock_prices?"
-PATH_FORMAT = "../data/symbol/{}_year"
-PATH_FULL_FORMAT = "../data/symbol/{}_year/{}.csv"
-TSSL_NAME_FORMAT = "TSSL_In_{}_Year.csv"
+PATH_FORMAT = "../data/symbol/{}_{}"
+PATH_FULL_FORMAT = "../data/symbol/{}_{}/{}.csv"
+TSSL_NAME_FORMAT = "TSSL_In_{}_{}.csv"
 
 
-def mining_data_from_vndirect(symbols, from_year, is_online=False):
+def mining_data_from_vndirect(symbols, time_units, time_type, is_online=False):
     """
     Mining data từ thời điểm hiện tại đến thời điểm from_year
-    :param from_year: số năm, cụ thể là số năm trước ngày hiện tại
+    :param time_units: Số năm, tháng, tuần, ngày, cụ thể là số năm, tháng, tuần, ngày trước ngày hiện tại
+    :param time_type: Loại đơn vị thời gian
     :param is_online: Dùng dữ liệu online hay offline, tiết kiệm thời gian và băng thông mạng.
     Chỉ nên để là True trong trường hợp muốn lấy giá trị mới nhất.
     :return: Danh sách các file csv được tạo trong folder symbol và file tỷ suất sinh lời.
@@ -30,27 +32,47 @@ def mining_data_from_vndirect(symbols, from_year, is_online=False):
     for code in symbols:
         print(code)
         if is_online:
-            path = getSymbolData(code, from_year)
+            path = getSymbolData(
+                code,
+                time_units,
+                time_type
+            )
         else:
-            path = PATH_FULL_FORMAT.format(from_year, code)
+            path = PATH_FULL_FORMAT.format(
+                time_units,
+                get_time_name_with_type(
+                    time_type
+                ),
+                code
+            )
 
         if path:
             if Path(path).exists():
                 df = pd.read_csv(path)
-                row = create_percent(code, df, from_year)
+                row = create_percent(code, df, time_units, time_type)
                 df_sum = df_sum.append(row)
 
     df_sum = df_sum.sort_values(
         by=[
             # MEAN_VOLUME_COLUMN,
-            column_format.format(n=FULL_COLUMN)
+            column_format.format(
+                time_units=get_time_name_with_type(time_type),
+                n=FULL_COLUMN
+            )
         ],
         ascending=False,
         ignore_index=True
     )
 
     formatVolumeBeforeSaveCSV(df_sum)
-    df_sum.to_csv(TSSL_NAME_FORMAT.format(from_year))
+    df_sum.to_csv(
+        TSSL_NAME_FORMAT.format(
+            time_units,
+            get_time_name_with_type(
+                time_type
+            )
+        )
+    )
 
 
 def formatVolumeBeforeSaveCSV(df_sum):
@@ -74,31 +96,42 @@ def get_all_symbol_in_file(path):
     return all_symbol
 
 
-def getSymbolData(code, from_year):
+def getSymbolData(code, time_units, time_type):
     """
     Lấy dữ liệu của một mã chứng khoản từ thời điểm from_year đến ngày hiện tại
     :param code: Mã chứng khoán của một công ty. Ex: MWG
-    :param from_year: Số năm, cụ thể là sô năm trước ngày hiện tại
+    :param time_units: Số năm, tháng, tuần, ngày cụ thể là sô năm, tháng, tuần, ngày trước ngày hiện tại
+    :param time_type: Loại đơn vị thời gian
     :return: Một path file csv chứa đầy đủ thông tin mã chứng khoán theo từng ngày làm việc
     """
-    from_date = get_from_date_with_year(year=from_year)
+    from_date = get_from_date_with_unit(time_units=time_units, time_type=time_type)
     url = get_url(code, from_date)
     json_string = get_json_from_url(url)
     panda = convert_json_to_pandas(json_string)
     if panda.empty:
         return ""
     else:
-        return save_pandas_to_csv(panda, code, PATH_FORMAT.format(from_year))
+        return save_pandas_to_csv(
+            panda,
+            code,
+            PATH_FORMAT.format(
+                time_units,
+                get_time_name_with_type(
+                    time_type
+                )
+            )
+        )
 
 
-def get_from_date_with_year(year):
+def get_from_date_with_unit(time_units, time_type):
     """
     Lấy ra ngày bắt đầu dựa vào ngày hiện tại và số năm (year)
-    :param year: Số năm
+    :param time_units: Số năm, tháng, tuần, ngày
+    :param time_type: Loại đơn vị thời gian
     :return: Ngày bắt đầu lấy dữ liệu
     """
     current_date = datetime.today()
-    from_date = current_date - relativedelta(years=year)
+    from_date = current_date - get_from_date_with_type(time_type, time_units)
     from_date_string = from_date.strftime('%Y-%m-%d')
     return from_date_string
 

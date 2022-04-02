@@ -65,7 +65,6 @@ _50_ROW = '50%'    # 50% giá trị nằm trong khoảng từ 0 đến bao nhiê
 _75_ROW = '75%'    # 75% giá trị nằm trong khoảng từ 0 đến bao nhiêu đó ..
 MAX_ROW = 'max'    # Giá trị lớn nhất
 
-COUNT_GD_IN_YEAR_CONSTANT = 250
 VOLUME_GOOD_CONSTANT = 100000
 
 
@@ -84,16 +83,17 @@ def isVolumeMinFilter(data_describe):
     return isVolumeMin
 
 
-def isSymbolExistYear(data_describe, year):
+def isSymbolExistYear(data_describe, time_units, time_type):
     """
     Kiểm tra mã cổ phiếu đã được giao dịch trên sàn chứng khoán trong khoảng thời gian nhất định
     (ở đây là năm)
     :param data_describe: Thông tin tổng quan có được từ bảng dữ liệu của mã cổ phiếu
     (min, 25%, 50%, 75% and max, ...)
-    :param year: số năm tối thiểu cần có.
+    :param time_units: số năm, tháng, tuần, ngày tối thiểu cần có.
+    :param time_type: Loại đơn vị thời gian (Số giao dịch trong năm (250), tháng (20), tuần (5), ngày (1))
     :return: True nếu cổ phiếu tồn tại lớn hơn số năm yêu cầu, ngược lại là False không đủ điều kiện.
     """
-    isExist = data_describe[AD_CLOSE_COLUMN][COUNT_ROW] >= year * COUNT_GD_IN_YEAR_CONSTANT - 1
+    isExist = data_describe[AD_CLOSE_COLUMN][COUNT_ROW] >= time_units * time_type.value - 1
     return isExist
 
 

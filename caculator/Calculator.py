@@ -2,10 +2,11 @@ import pandas as pd
 import numpy as np
 
 from caculator.Filter import isVolumeMinFilter, isSymbolExistYear, AD_CLOSE_COLUMN, MIN_ROW, MAX_ROW, COUNT_ROW, \
-    COUNT_GD_IN_YEAR_CONSTANT, MEAN_ROW, STD_ROW, NM_VOLUME_COLUMN, isVolumeGood
+    MEAN_ROW, STD_ROW, NM_VOLUME_COLUMN, isVolumeGood
+from data.Units import get_time_name_with_type
 
 SYMBOL_COLUMN = 'Symbol'
-COUNT_YEAR_COLUMN = 'Count Year'
+COUNT_YEAR_COLUMN = 'Count {time_units}'
 FROM_COLUMN = 'From'
 TO_COLUMN = 'To'
 MIN_COLUMN = 'Min'
@@ -16,23 +17,24 @@ MEAN_VOLUME_COLUMN = 'Mean Volume'
 STD_VOLUME_COLUMN = 'STD Volume'
 percent_text_format = "{:,.2f}"
 percent_number_format = "{percent:.2f}"
-column_format = "Year {n}"
+column_format = "{time_units} {n}"
 FULL_COLUMN = "Full"
 
 
-def create_percent(code, data_frame, n=1):
+def create_percent(code, data_frame, n, time_type):
     """
     Lấy tỷ suất sinh lời theo từng giai đoạn dựa vào data truyền vào
     :param code: mã chứng khoán
     :param data_frame: dữ liệu giao dịch của mã chứng khoán
-    :param n: chu kỳ, thường là số năm
+    :param n: Chu kỳ, thường là số năm
+    :param time_type: Loại đơn vị thời gian
     :return: data frame chứa thông tin tỷ suất sinh lời theo từng giai đoạn
     """
     data_describe = data_frame.describe()
     if isVolumeMinFilter(data_describe):
         return
 
-    if not isSymbolExistYear(data_describe, year=1):
+    if not isSymbolExistYear(data_describe, 1, time_type):
         return
 
     if not isVolumeGood(data_describe):
@@ -41,8 +43,8 @@ def create_percent(code, data_frame, n=1):
     df_output = pd.DataFrame(columns=[SYMBOL_COLUMN])
     df_output = df_output.append({SYMBOL_COLUMN: code}, ignore_index=True)
 
-    count_year_not_round = addCountYearColumn(data_describe, df_output)
-    count_year_round = round(count_year_not_round)
+    count_time_not_round = addCountTimeColumn(data_describe, df_output, time_type)
+    count_time_round = round(count_time_not_round)
     from_value = addFromColumn(data_frame, df_output)
     to_value = addToColumn(data_frame, df_output)
     min_price_value = addMinColumn(data_describe, df_output)
@@ -52,14 +54,17 @@ def create_percent(code, data_frame, n=1):
     mean_volume_value = addMeanVolumeColumn(data_describe, df_output)
     std_volume_value = addStdVolumeColumn(data_describe, df_output)
 
-    n = min(n, count_year_round)
-    maps = create_new_data(data_frame, n, count_year_not_round)
+    n = min(n, count_time_round)
+    maps = create_new_data(data_frame, n, count_time_not_round)
     for key, value in maps.items():
         percent = float(percent_number_format.format(percent=value))
-        if percent <= 10:  # Loại bỏ cổ phiếu có phần trăm tăng trưởng trong 1 năm nhỏ hơn 10
+        if percent <= 10:  # Loại bỏ cổ phiếu có phần trăm tăng trưởng trong 1 chu kỳ nhỏ hơn 10
             return
 
-        year = column_format.format(n=key)
+        year = column_format.format(
+            time_units=get_time_name_with_type(time_type),
+            n=key
+        )
         df_output[year] = percent
 
         if key == FULL_COLUMN:
@@ -108,19 +113,21 @@ def calculator(fv, pv, n=1):
     return r
 
 
-def addCountYearColumn(data_describe, df_output):
+def addCountTimeColumn(data_describe, df_output, time_type):
     """
-    Thêm cột đếm số năm tồn tại của cổ phiếu
+    Thêm cột đếm số thời gian tồn tại của cổ phiếu
     :param data_describe: data thông tin tổng quan của dữ liệu.
     :param df_output: data thông tin của mã chứng khoán sau tính toán (1 row trong file csv output)
+    :param time_type: Loại đơn vị thời gian
     :return:
     """
     count_year = float(
         percent_number_format.format(
-            percent=data_describe[AD_CLOSE_COLUMN][COUNT_ROW] / COUNT_GD_IN_YEAR_CONSTANT
+            percent=data_describe[AD_CLOSE_COLUMN][COUNT_ROW] / time_type.value
         )
     )
-    df_output[COUNT_YEAR_COLUMN] = count_year
+    count_name_column = COUNT_YEAR_COLUMN.format(time_units=get_time_name_with_type(time_type))
+    df_output[count_name_column] = count_year
     return count_year
 
 
