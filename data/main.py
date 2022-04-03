@@ -22,7 +22,7 @@ def build(time_units, time_type, is_first_call, is_create_new_file_tssl, is_draw
     start = time.time()
     time_name_type = get_time_name_with_type(time_type)
     if is_create_new_file_tssl:
-        symbols_csv = get_all_symbol_in_file('../data/securities/AllSymbol.csv')
+        symbols_csv = get_all_symbol_in_file('../data/securities/Loc_Quy_2_2020.csv')
         symbols = symbols_csv['stockSymbol']
         Vndirect.mining_data_from_vndirect(symbols, time_units, time_type, is_first_call)
 
