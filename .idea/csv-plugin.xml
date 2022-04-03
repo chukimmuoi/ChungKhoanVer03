@@ -115,6 +115,48 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/securities/topi/01_TangTruongBenVung.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/02_HieuQuaKInhDoanhCao.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/03_HieuQuaKinhDoanhCaoVaMoRongSX.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/04_CoTinhChuKy.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/05_TinhPhongThu.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/06_DaQuaChuKyTangTruongCao.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/symbol/1_Month/DQC.csv">
           <value>
             <Attribute>
