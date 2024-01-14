@@ -40,7 +40,7 @@ def build(time_units, time_type, is_first_call, is_create_new_file_tssl, is_draw
 
 
 # Step 00
-build(time_units=1, time_type=TimeUnitsType.MONTH, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
+build(time_units=3, time_type=TimeUnitsType.MONTH, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
 
 # Step 01
 # build(time_units=3, time_type=TimeUnitsType.MONTH, is_first_call=True, is_create_new_file_tssl=True, is_draw_chart=False)
@@ -52,4 +52,4 @@ build(time_units=1, time_type=TimeUnitsType.MONTH, is_first_call=True, is_create
 # build(time_units=1, time_type=TimeUnitsType.YEAR, is_first_call=False, is_create_new_file_tssl=False, is_draw_chart=True)
 
 # Step 04: So sánh mã tồn tại trong 2 danh sách mining được
-# compare("TSSL_IN_5_Year", "TSSL_IN_6_Month")
+# compare("securities/VN30", "securities/nganh/All_VN30")
