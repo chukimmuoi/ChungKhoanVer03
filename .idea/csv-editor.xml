@@ -31,6 +31,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/TSSL_In_2_Week.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/TSSL_In_3_Month.csv">
           <value>
             <Attribute>
@@ -375,6 +382,27 @@
           </value>
         </entry>
         <entry key="/data/securities/topi/06_DaQuaChuKyTangTruongCao.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/2024/MuoiCKChoose.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/securities/topi/DauTuGi2024.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/symbol/1_Month/A32.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
