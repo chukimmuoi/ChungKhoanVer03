@@ -58,8 +58,8 @@ def create_percent(code, data_frame, n, time_type):
     maps = create_new_data(data_frame, n, count_time_not_round)
     for key, value in maps.items():
         percent = float(percent_number_format.format(percent=value))
-        if percent <= 10:  # Loại bỏ cổ phiếu có phần trăm tăng trưởng trong 1 chu kỳ nhỏ hơn 10
-            return
+        # if percent <= 10:  # Loại bỏ cổ phiếu có phần trăm tăng trưởng trong 1 chu kỳ nhỏ hơn 10
+        #     return
 
         year = column_format.format(
             time_units=get_time_name_with_type(time_type),
@@ -70,8 +70,8 @@ def create_percent(code, data_frame, n, time_type):
         if key == FULL_COLUMN:
             key_percent = percent
 
-    if key_percent <= 20:  # Loại bỏ cổ phiếu có phần trăm tăng trưởng trong toàn chu kỳ nhỏ hơn 20
-        return
+    # if key_percent <= 20:  # Loại bỏ cổ phiếu có phần trăm tăng trưởng trong toàn chu kỳ nhỏ hơn 20
+    #     return
 
     return df_output
 
